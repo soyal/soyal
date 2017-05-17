@@ -1,63 +1,54 @@
 const loginM = {
   state: {
-    isLogin: false,
-    isChecked: false,
-    checkStatus: 'uncheck'
+    token: 'world',
+    authErr: false,   // 验证不通过
+    authPass: false,   //验证通过
+    greedMsg: ['来，输入点啥吧'],
+    errMsg: ['不对哦~tip:hello，____'],
+    successMsg: ['那你很棒棒哦~'],
+    showMsg: null
   },
 
   mutations: {
-    login(state) {
-      state.isLogin = true;
+    checkToken(state, token) {
+      // 通过
+      if( token === state.token) {
+        state.authPass = true;
+        state.showMsg = state.successMsg;
+      // 没有通过
+      } else {
+        state.authErr = true;
+        state.showMsg = state.errMsg;
+      }
     },
 
-    logout(state) {
-      state.isLogin = false;
-    },
-
-    /**
-     * 数据拉取中
-     */
-    loading(state) {
-      state.loading = true;
-    },
-
-    /**
-     * 数据拉取完成
-     * @param {*} state 
-     */
-    complete(state) {
-      state.loading = false;
-    },
-
-    /**
-     * 通过验证
-     * @param {*} state 
-     */
-    pass(state) {
-      state.isChecked = true;
-    },
-
-    /**
-     * 验证失败
-     */
-    deny(state) {
-      state.isChecked = false;
+    // 重置authErr
+    resetAuth(state) {
+      state.authErr = false;
+      state.authPass = false;
     }
   },
 
   actions: {
     checkToken({commit}, token) {
-      commit('loading');
-      setTimeout(function() {
-        commit('deny');
-        commit('complete');
-      }, 2000)
+      commit('checkToken', token);
+
+      // 2s展示一次动画
+      setTimeout(() => {
+        commit('resetAuth');
+      }, 2000);
     }
   },
 
   getters: {
-    isChecked(state) {
-      return state.isChecked;
+    authErr: (state) => {
+      return state.authErr;
+    },
+    authPass: (state) => {
+      return state.authPass;
+    },
+    showMsg: (state) => {
+      return state.showMsg || state.greedMsg;
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <typed :content="blinkContent" :time="typeTime"></typed>
+    <typed :content="showMsg" :time="typeTime"></typed>
     <log-input></log-input>
   </div>
 </template>
@@ -16,6 +16,7 @@
 </style>
 
 <script>
+  import {mapGetters} from 'vuex';
   import typed from './typed.vue';
   import logInput from './log-input.vue';
 
@@ -24,8 +25,6 @@
 
     data() {
       return {
-        blinkContent: ['输入token进行验证'],
-
         typeTime: {
           start: 100,
           clear: 50
@@ -34,9 +33,9 @@
     },
 
     computed: {
-      isChecked() {
-        return this.$store.getters.isChecked;
-      }
+      ...mapGetters({
+        showMsg: 'showMsg'
+      })
     },
 
     watch: {

@@ -1,7 +1,5 @@
 # soyal
 
-> soyal's blog
-
 ## Build Setup
 
 ``` bash
@@ -15,4 +13,5 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 说明
+vue + vuex + vue-router 瞎写来玩的东西
