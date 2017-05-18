@@ -41,7 +41,6 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import 'animate.css/animate.min.css'
 
   export default {
     name: 'log-input',
@@ -55,8 +54,18 @@
     computed: {
       ...mapGetters({
         authErr: 'authErr',
-        authPass: 'authPass'
+        authPass: 'authPass', //是否验证通过
+        startToLogin: 'startToLogin' //开始进入动画
       })
+    },
+
+    watch: {
+      startToLogin: function(newValue) {
+        if(newValue) {
+          this.$router.push('resume');
+          this.$store.dispatch('resetLogin');
+        }
+      }
     },
 
     methods: {

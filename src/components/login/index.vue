@@ -1,11 +1,17 @@
 <template>
-  <div class="login-container">
-    <typed :content="showMsg" :time="typeTime"></typed>
-    <log-input></log-input>
+  <div class="login-container-wrap">
+    <div class="login-container">
+      <typed :content="showMsg" :time="typeTime"></typed>
+      <log-input></log-input>
+    </div>
   </div>
 </template>
 
 <style>
+  .login-container-wrap {
+    position: absolute;
+    width: 100%;
+  }
   .login-container {
     position: relative;
     width: 640px;

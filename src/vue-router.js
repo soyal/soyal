@@ -1,6 +1,8 @@
 import VueRouter from 'vue-router';
 import login from './components/login/index.vue';
-import editor from './components/editor/index.vue';
+import Resume from './components/resume/index.vue';
+// import editor from './components/editor/index.vue';
+
 
 const router = new VueRouter({
   routes: [
@@ -13,8 +15,8 @@ const router = new VueRouter({
       component: login
     },
     {
-      path: '/editor',
-      component: editor
+      path: '/resume',
+      component: Resume
     }
   ]
 });
